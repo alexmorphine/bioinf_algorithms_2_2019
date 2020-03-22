@@ -108,7 +108,7 @@ def get_split_mask(X, column, value):
 class DecisionTree(object):
     """Recursive implementation of decision tree."""
 
-    def __init__(self, criterion_name='entropy'):
+    def __init__(self, criterion_name='entropy', max_depth=None):
         """
         Args:
             criterion_name (str): criterion to use for splitting (default='entropy')
@@ -119,6 +119,7 @@ class DecisionTree(object):
         self.threshold = None
         self.outcome = None
         self.outcome_proba = None
+        self.max_depth = max_depth
 
         self.left_child = None
         self.right_child = None
@@ -215,7 +216,7 @@ class DecisionTree(object):
             min_gain (float): minimum gain required for splitting
             verbose (bool): print info for debug
         """
-
+        max_depth = self.max_depth if self.max_depth else max_depth
         if unique_targets is None:
             unique_targets = sorted(np.unique(y))
 
