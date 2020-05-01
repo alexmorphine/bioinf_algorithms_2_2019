@@ -70,4 +70,4 @@ class PocketPerceptron:
         """
         b = np.ones((len(x), x.shape[1] + 1))
         b[:, 1:] = x
-        return np.sign(np.dot(x, self.weights))
+        return np.sign(np.dot(b, self.weights))
